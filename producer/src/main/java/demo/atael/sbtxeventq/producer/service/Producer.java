@@ -1,11 +1,15 @@
 package demo.atael.sbtxeventq.producer.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.jms.core.JmsTemplate;
 
 @Service
 public class Producer {
+
+  private static final Logger log = LoggerFactory.getLogger(Producer.class);
 
   JmsTemplate jmsTemplate;
 
@@ -19,6 +23,6 @@ public class Producer {
   public void sendMessageToTopic(String message)
   {
     jmsTemplate.convertAndSend(topic,message);
+    log.info("Sending message: {} to topic {}", message, topic);
   }
-
 }

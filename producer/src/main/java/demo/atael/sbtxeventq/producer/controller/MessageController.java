@@ -1,7 +1,7 @@
 package demo.atael.sbtxeventq.producer.controller;
 
 import demo.atael.sbtxeventq.producer.service.Producer;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,9 +15,8 @@ public class MessageController {
     this.producer = producer;
   }
 
-  @GetMapping("/sendMessage")
-  public String publishMessage(@RequestParam("message") String message) {
-
+  @PostMapping("/message")
+  public String receiveMessage(@RequestParam("message") String message) {
     producer.sendMessageToTopic(message);
     return "Message was sent successfully";
   }
